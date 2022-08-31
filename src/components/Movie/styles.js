@@ -17,13 +17,13 @@ export default makeStyles((theme) => ({
   links: {
     alignItems: 'center',
     fontWeight: 'bolder',
+    textDecoration: 'none',
     [theme.breakpoints.up('xs')]: {
       display: 'flex',
       flexDirection: 'column',
     },
     '&:hover': {
       cursor: 'pointer',
-      textDecoration: 'none',
     },
   },
   image: {
