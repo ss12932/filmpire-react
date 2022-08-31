@@ -1,5 +1,4 @@
 import { makeStyles } from '@mui/styles';
-import { flexbox } from '@mui/system';
 
 export default makeStyles((theme) => ({
   movie: {
@@ -26,13 +25,13 @@ export default makeStyles((theme) => ({
       cursor: 'pointer',
       textDecoration: 'none',
     },
-    image: {
-      borderRadius: '20px',
-      height: '300px',
-      marginBottom: '10px',
-      '&:hover': {
-        transform: 'scale(1.05)',
-      },
+  },
+  image: {
+    borderRadius: '20px',
+    height: '300px',
+    marginBottom: '10px',
+    '&:hover': {
+      transform: 'scale(1.05)',
     },
   },
 }));
