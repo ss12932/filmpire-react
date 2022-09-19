@@ -24,18 +24,30 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
+import {
+  useGetRecommendationsQuery,
+  useGetMovieQuery,
+} from '../../services/TMDB';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 import useStyles from './styles';
-import { useGetMovieQuery } from '../../services/TMDB';
 import genreIcons from '../../assets/genres';
+import MovieList from '../MovieList/MovieList';
 
 const MovieInformation = () => {
   const { id } = useParams();
   const { data, isFetching, error } = useGetMovieQuery(id);
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const { data: recommendations, isFetching: isRecommendationsFetching } =
+    useGetRecommendationsQuery({
+      list: '/recommendations',
+      movie_id: id,
+    });
+
   const addToFavorites = (params) => {};
   const addToWatchList = (params) => {};
+
   const isMovieFavorited = true;
   const isMovieWatchlisted = true;
 
@@ -74,7 +86,7 @@ const MovieInformation = () => {
             <Rating readOnly value={data.vote_average / 2} />
             <Typography
               variant="subtitle1"
-              butterBottom
+              gutterBottom
               style={{ marginLeft: '10px' }}
             >
               {data?.vote_average.toFixed(1)} /10
@@ -212,6 +224,16 @@ const MovieInformation = () => {
           </div>
         </Grid>
       </Grid>
+      <Box marginTop="5rem" width="100%">
+        <Typography variant="h3" gutterBottom align="center">
+          You Might also like
+        </Typography>
+        {recommendations ? (
+          <MovieList movies={recommendations} numberOfMovies={12} />
+        ) : (
+          <Box>Sorry nothing was found.</Box>
+        )}
+      </Box>
     </Grid>
   );
 };
