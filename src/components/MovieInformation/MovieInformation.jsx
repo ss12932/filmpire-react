@@ -23,14 +23,17 @@ import {
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 import useStyles from './styles';
 import { useGetMovieQuery } from '../../services/TMDB';
 import genreIcons from '../../assets/genres';
 
 const MovieInformation = () => {
   const { id } = useParams();
-  const classes = useStyles();
   const { data, isFetching, error } = useGetMovieQuery(id);
+  const classes = useStyles();
+  const dispatch = useDispatch();
 
   if (isFetching) {
     return (
@@ -47,12 +50,7 @@ const MovieInformation = () => {
     );
   }
   return (
-    <Grid
-      container
-      className={classes.containerSpaceAround}
-      justifyContent="center"
-      alignItems="center"
-    >
+    <Grid container className={classes.containerSpaceAround}>
       <Grid item sm={12} lg={4}>
         <img
           className={classes.poster}
@@ -91,7 +89,7 @@ const MovieInformation = () => {
               key={genre.name}
               className={classes.links}
               to="/"
-              onClick={() => {}}
+              onClick={() => dispatch(selectGenreOrCategory(genre.id))}
             >
               <img
                 src={genreIcons[genre.name.toLowerCase()]}
