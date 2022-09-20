@@ -180,8 +180,6 @@ const MovieInformation = () => {
                   IMDB
                 </Button>
                 <Button
-                  target="_blank"
-                  rel="noopener noreferrer"
                   href="#"
                   onClick={() => setOpen(true)}
                   endIcon={<Theaters />}
