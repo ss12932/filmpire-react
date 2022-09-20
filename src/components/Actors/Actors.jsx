@@ -7,13 +7,14 @@ import {
   useGetActorsDetailsQuery,
   useGetMoviesByActorIdQuery,
 } from '../../services/TMDB';
-import { MovieList } from '..';
+import { MovieList, Pagination } from '..';
 
 const Actors = () => {
+  const [page, setPage] = useState(1);
   const { id } = useParams();
   const history = useHistory();
   const classes = useStyles();
-  const page = 1;
+
   const { data, isFetching, error } = useGetActorsDetailsQuery(id);
   const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
 
@@ -54,7 +55,7 @@ const Actors = () => {
           xl={8}
           style={{
             display: 'flex',
-            jtifyContent: ' center',
+            justifyContent: ' center',
             flexDirection: 'column',
           }}
         >
@@ -91,6 +92,11 @@ const Actors = () => {
           Movies
         </Typography>
         {movies && <MovieList movies={movies} numberOfMovies={12} />}
+        <Pagination
+          currentPage={page}
+          setPage={setPage}
+          totalPages={movies?.total_pages}
+        />
       </Box>
     </>
   );
