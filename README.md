@@ -16,7 +16,11 @@
 
 ## Deployed Link
 
+tangerine-blancmange-82a1f1.netlify.app
+
 ## Github Repository Link
+
+https://github.com/ss12932/filmpire-react
 
 ## Screenshot
 
