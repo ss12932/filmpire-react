@@ -16,7 +16,7 @@
 
 ## Deployed Link
 
-tangerine-blancmange-82a1f1.netlify.app
+https://tangerine-blancmange-82a1f1.netlify.app/
 
 ## Github Repository Link
 
